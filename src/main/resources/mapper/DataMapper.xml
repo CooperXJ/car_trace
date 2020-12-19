@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cooper.mapper.DataMapper">
+    <select id="getCarList" resultType="String">
+        select distinct car_flag from car_trace;
+    </select>
+
+    <select id="getCarTraceList" parameterType="String" resultType="com.cooper.entity.CarTrace">
+        select * from car_trace where car_flag=#{car_flag} and DATE(STR_TO_DATE(time,"%Y%m%d%H%i%s")) = DATE (STR_TO_DATE(#{time},"%Y%m%d")) order by time
+    </select>
+</mapper>
